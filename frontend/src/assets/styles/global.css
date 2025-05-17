@@ -1,0 +1,42 @@
+/* src/assets/styles/global.css */
+
+/* 기본 스타일 초기화 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  font-family: "Roboto", "Segoe UI", Verdana, Arial, sans-serif;
+  background-color: #f4f4f9; /* 기본 배경색 */
+  color: #333; /* 기본 텍스트 색상 */
+  -webkit-font-smoothing: antialiased;
+}
+
+body,
+input,
+button {
+  font-size: 14px;
+  font-family: "Roboto", "Segoe UI", Verdana, Arial, sans-serif;
+}
+
+*:focus {
+  outline: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+}
