@@ -1,7 +1,7 @@
 import java.util.List;
 
 public class RuleSearchDTO {
-   private List<String> searchKeyword; // 배열
+    private List<String> searchKeyword; // 배열
     private int eventNum;               // 숫자
     private String eventNm;            // 문자열
     private char type;                 // 문자
@@ -34,9 +34,9 @@ public class RuleSearchDTO {
 
     public char getType() {
         return type;
-  }
+    }
 
-      public void setSummary(String summary) {
+    public void setSummary(String summary) {
         if (summary.length() > 300) {
             throw new IllegalArgumentException("Summary는 300자 이하여야 합니다.");
         }
