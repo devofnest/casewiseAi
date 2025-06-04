@@ -1,42 +1,54 @@
-# casewiseAi Service
+# React + TypeScript + Vite
 
-## 소개
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-국가 openApi를 활용하여 내가 겪은 일을 요약해서 보여주는 웹 서비스
-이 서비스는 학습 및 연습 목적으로 제작되었으며, 상업적 용도로 사용되지 않습니다.
+Currently, two official plugins are available:
 
-## 주요 기능
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
--   판례 검색 및 요약
--   데이터 크롤링 및 저장
--   반응형 프론트엔드 인터페이스 제공
+## Expanding the ESLint configuration
 
-## 프로젝트 구조
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
--   `backend/`: 파이썬 백엔드 서버
--   `frontend/`: React 프론트엔드 UI
-
-더 자세한 내용은 여기서 확인 가능합니다.
-
--   [Frontend 관련 자세히 보기](./front/README.md)
--   [Backend 관련 자세히 보기](./backend/README.md)
-
-### 설치 및 실행법
-
-```bash
-# backend 설치
-
-
-# frontend 설치
-cd frontend
-npm install
-npm run dev
+```js
+export default tseslint.config({
+  extends: [
+    // Remove ...tseslint.configs.recommended and replace with this
+    ...tseslint.configs.recommendedTypeChecked,
+    // Alternatively, use this for stricter rules
+    ...tseslint.configs.strictTypeChecked,
+    // Optionally, add this for stylistic rules
+    ...tseslint.configs.stylisticTypeChecked,
+  ],
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+})
 ```
 
-### 개발 일정
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
--   총 기간: 2주
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-### 라이센스
-
--   이 프로젝트는 스터디 및 학습 목적으로만 사용됩니다. 상업적 배포 및 이용은 금지됩니다.
+export default tseslint.config({
+  plugins: {
+    // Add the react-x and react-dom plugins
+    'react-x': reactX,
+    'react-dom': reactDom,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended typescript rules
+    ...reactX.configs['recommended-typescript'].rules,
+    ...reactDom.configs.recommended.rules,
+  },
+})
+```
