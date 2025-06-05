@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class RuleSearchDTO {
+public class EventDetailDTO {
     private List<String> searchKeyword; // 배열
     private int eventNum;               // 숫자
     private String eventNm;            // 문자열
@@ -34,6 +34,14 @@ public class RuleSearchDTO {
 
     public char getType() {
         return type;
+    }
+
+    public void setType(char type) {
+        this.type = type;
+    }
+
+    public String getSummary() {
+        return summary;
     }
 
     public void setSummary(String summary) {
