@@ -1,20 +1,20 @@
-import { useSearchStore } from "../store/searchStore";
+import { useSearchStore, CaseResult } from "../store/searchStore";
 
 export default function SearchBar() {
 	const { query, setQuery, setResults } = useSearchStore();
 
-	const handleSearch = async () => {
-		if (!query.trim()) return;
+        const handleSearch = async () => {
+                if (!query.trim()) return;
 
-		const res = await fetch("/data/cases.json");
-		const data = await res.json();
+                const res = await fetch("/data/cases.json");
+                const data: CaseResult[] = await res.json();
 
-		const filtered = data.filter(
-			(item: any) =>
-				item.title.includes(query) || item.summary.includes(query)
-		);
+                const filtered = data.filter(
+                        (item) =>
+                                item.title.includes(query) || item.summary.includes(query)
+                );
 
-		setResults(filtered);
+                setResults(filtered);
 	};
 
 	return (

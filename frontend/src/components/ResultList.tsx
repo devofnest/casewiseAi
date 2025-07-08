@@ -1,4 +1,4 @@
-import { useSearchStore } from "../store/searchStore";
+import { useSearchStore, CaseResult } from "../store/searchStore";
 
 export default function ResultList() {
 	const { results } = useSearchStore();
@@ -7,7 +7,7 @@ export default function ResultList() {
 
 	return (
 		<ul>
-			{results.map((item: any) => (
+                        {results.map((item: CaseResult) => (
 				<li key={item.id}>
 					<h3>{item.title}</h3>
 					<p>{item.summary}</p>
