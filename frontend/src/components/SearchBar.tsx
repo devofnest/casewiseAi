@@ -1,4 +1,5 @@
-import { useSearchStore, CaseResult } from "../store/searchStore";
+import { useSearchStore } from "../store/searchStore";
+import type { CaseResult } from "../store/searchStore";
 
 export default function SearchBar() {
 	const { query, setQuery, setResults } = useSearchStore();
@@ -6,7 +7,7 @@ export default function SearchBar() {
         const handleSearch = async () => {
                 if (!query.trim()) return;
 
-                const res = await fetch("/data/cases.json");
+                const res = await fetch(`${import.meta.env.BASE_URL}data/cases.json`);
                 const data: CaseResult[] = await res.json();
 
                 const filtered = data.filter(

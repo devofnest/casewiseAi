@@ -1,4 +1,5 @@
-import { useSearchStore, CaseResult } from "../store/searchStore";
+import { useSearchStore } from "../store/searchStore";
+import type { CaseResult } from "../store/searchStore";
 
 export default function ResultList() {
 	const { results } = useSearchStore();
