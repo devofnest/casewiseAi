@@ -24,14 +24,17 @@ data paths support a GitHub Pages project subdirectory without a custom domain.
 The Pages workflow builds only `frontend/dist`; Python source and training data
 are excluded from the public artifact. It runs lint and production build before
 uploading. In repository Settings > Pages, select GitHub Actions as the source.
-The repository is currently private; do not change its visibility automatically.
-GitHub's plan must support Pages for private repositories. A publicly accessible
-Pages site exposes its bundled frontend and the five example records.
+The owner has changed the repository to public. A publicly accessible Pages
+site exposes its bundled frontend and the five example records.
 
 The current integration can read and push Git but returns HTTP 403 for Pages
 management. The first workflow run passed dependency installation, lint, build,
-and artifact upload; its final deployment job failed. Its logs are blocked by
-the current network policy at `results-receiver.actions.githubusercontent.com`.
+and artifact upload; its final deployment job failed. After public conversion,
+the official `actions/configure-pages` enablement step also returned HTTP 403
+when trying to create the Pages site. The owner must enable Pages once in
+Settings > Pages and select GitHub Actions. Then rerun the deployment workflow.
+Failure annotations were read successfully; full log downloads remain blocked
+by network policy at `results-receiver.actions.githubusercontent.com`.
 No successful remote deployment has been verified.
 Do not infer the deployment URL until GitHub reports a successful deployment.
 
