@@ -34,6 +34,10 @@ jobs:
       - name: Build
         working-directory: frontend
         run: corepack yarn@1.22.22 build
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: frontend/dist
