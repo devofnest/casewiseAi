@@ -28,8 +28,11 @@ The repository is currently private; do not change its visibility automatically.
 GitHub's plan must support Pages for private repositories. A publicly accessible
 Pages site exposes its bundled frontend and the five example records.
 
-The current integration can read Git but returns HTTP 403 for Pages management.
-The workflow is prepared; no successful remote deployment has been verified.
+The current integration can read and push Git but returns HTTP 403 for Pages
+management. The first workflow run passed dependency installation, lint, build,
+and artifact upload; its final deployment job failed. Its logs are blocked by
+the current network policy at `results-receiver.actions.githubusercontent.com`.
+No successful remote deployment has been verified.
 Do not infer the deployment URL until GitHub reports a successful deployment.
 
 ## Python investigation
@@ -43,6 +46,10 @@ The root README's description of a Python web backend is not implemented:
 - It loads `kobart_summary` through `from_pretrained`, but no such model directory
   or model weights are checked in. The original tokenizer uses the `kobart`
   package, which is not declared by the legacy requirements file.
+- `src/download_binary.py` contains original Google Drive links for model config
+  and weights. Google Drive requests currently fail at the network proxy with
+  HTTP 403, so their availability and integrity have not been established. Do
+  not execute the script blindly: it uses shell mutations and no checksum checks.
 - The experiment expects both document text and a reference summary. It generates
   a summary and calculates ROUGE; it is not a case-search API.
 - Legacy pins include torch 1.7.1, transformers 4.3.3, Streamlit 0.72.0, and
